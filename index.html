@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173b70">
+  <title>Education & Inspiration Hub</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root { color-scheme: light; --blue:#173b70; --purple:#6550b5; --ink:#203047; --muted:#64748b; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,sans-serif; background:#f3f6fb; color:var(--ink); }
+    header { background:linear-gradient(135deg,#173b70,#6550b5); color:white; padding:28px 20px 32px; border-radius:0 0 26px 26px; }
+    .eyebrow { font-size:12px; letter-spacing:1.5px; opacity:.85; text-transform:uppercase; }
+    h1 { font-size:27px; line-height:1.15; margin:9px 0; }
+    header p { margin:0; opacity:.9; line-height:1.5; }
+    main { max-width:680px; margin:auto; padding:18px 16px 32px; }
+    .welcome { background:white; border-radius:18px; padding:18px; box-shadow:0 5px 20px #173b7010; margin-top:-12px; }
+    h2 { font-size:19px; margin:0 0 10px; }
+    .quote { font-size:18px; line-height:1.5; font-weight:650; color:var(--blue); }
+    .byline { color:var(--muted); font-size:13px; margin-top:10px; }
+    .section-title { margin:24px 2px 12px; font-size:18px; }
+    .cards { display:grid; gap:12px; }
+    .card { background:white; border-radius:16px; padding:16px; box-shadow:0 4px 16px #173b700c; }
+    .card h3 { margin:0 0 6px; font-size:16px; }
+    .card p { margin:0; color:#526174; line-height:1.5; font-size:14px; }
+    button { width:100%; border:0; border-radius:13px; background:var(--purple); color:white; padding:14px 16px; font-size:15px; font-weight:650; margin-top:14px; }
+    button:active { opacity:.85; }
+    footer { text-align:center; color:var(--muted); font-size:12px; padding:24px 12px 8px; }
+    .note { font-size:12px; color:var(--muted); margin-top:12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Learn • Grow • Get inspired</div>
+    <h1>Education & Inspiration Hub</h1>
+    <p>Simple learning tips, encouraging words and stories to brighten your day.</p>
+  </header>
+  <main>
+    <section class="welcome">
+      <h2>Today's encouragement</h2>
+      <div class="quote" id="quote">Small steps every day can lead to big changes. Keep learning, keep trying and believe in your progress.</div>
+      <div class="byline">A daily reminder for you</div>
+      <button id="newQuote" type="button">Read another encouragement</button>
+    </section>
+
+    <h2 class="section-title">Explore the hub</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>📚 Learning tip</h3>
+        <p>Choose one small topic today. Read about it, write three things you learned, and explain them in your own words.</p>
+      </article>
+      <article class="card">
+        <h3>🌱 Personal growth</h3>
+        <p>Progress is not always fast. Be patient with yourself and celebrate the effort you make along the way.</p>
+      </article>
+      <article class="card">
+        <h3>💛 Inspirational story</h3>
+        <p>A person who keeps learning after a setback is building strength. A difficult day does not have to decide your future.</p>
+      </article>
+    </div>
+    <p class="note">This is the first version of the app. New articles and features can be added as your community grows.</p>
+    <footer>Education & Inspiration Hub</footer>
+  </main>
+  <script>
+    const messages = [
+      "Small steps every day can lead to big changes. Keep learning, keep trying and believe in your progress.",
+      "Your background does not limit what you can learn or become. Start where you are and keep moving forward.",
+      "Every new skill begins with a beginner. Give yourself time, practise and do not give up.",
+      "A kind word can encourage someone more than you may ever know. Share hope today."
+    ];
+    let index = 0;
+    document.getElementById("newQuote").addEventListener("click", () => {
+      index = (index + 1) % messages.length;
+      document.getElementById("quote").textContent = messages[index];
+    });
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand();
+    }
+  </script>
+</body>
+</html>
